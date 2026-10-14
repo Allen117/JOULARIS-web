@@ -17,7 +17,7 @@
 ## 專案概覽
 
 - 這是 JOULARIS 的官方網站，使用 [Astro](https://astro.build) 建置。
-- 遠端 repo：https://github.com/Allen117/JOULARIS.git（主分支為 `main`）。
+- 遠端 repo：https://github.com/Allen117/JOULARIS-web.git（主分支為 `main`）。
 
 ### 常用指令
 
