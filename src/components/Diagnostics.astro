@@ -1,0 +1,155 @@
+---
+// 能效診斷：冰水主機與空壓機，從企業主在意的電費與設備投資角度說明
+// 空壓機四個方向參考 compressor-analysis-skill：壓力、漏氣與閒置、多台調度、設備汰換
+const groups = [
+  {
+    key: 'chiller',
+    label: '冰水主機',
+    img: { src: '/diagnostics/chiller.png', w: 2880, h: 1824, alt: '冰機效率診斷畫面：各台冰水主機即時 kW/RT、當月效率趨勢、負載率分佈與設備效率排名' },
+    items: [
+      {
+        title: '效率掉了多少',
+        desc: '系統會算出每冷凍噸實際耗多少電，和額定值、和去年同樣負載時比較，效率衰退直接換算成每年多付的電費。',
+      },
+      {
+        title: '該洗管了，系統會提醒',
+        desc: '管路結垢會讓主機越跑越吃電。系統從溫度變化看出來，提醒你在夏天尖峰前安排保養。',
+      },
+      {
+        title: '開幾台最省',
+        desc: '負載低時兩台都開在半載，常常比只開一台還耗電。系統會依照實際負載建議開幾台。',
+      },
+      {
+        title: '溫度設定能不能放寬',
+        desc: '在室內舒適度不受影響的前提下，找出冰水溫度可以調高的空間。',
+      },
+    ],
+  },
+  {
+    key: 'compressor',
+    label: '空壓機',
+    img: { src: '/diagnostics/compressor.png', w: 2880, h: 1823, alt: '空壓機效率診斷畫面：各台空壓機即時比功率、當月效率趨勢、負載率分佈與設備效率排名' },
+    items: [
+      {
+        title: '壓力是不是設太高了',
+        desc: '系統會比對產線末端實際需要多少壓力，找出可以安全調降的空間，多出來的壓力就是多付的電費。',
+      },
+      {
+        title: '下班了，空壓機還在補漏氣',
+        desc: '沒生產的時段還在用氣，大多是漏氣。系統會算出一年因此多花多少電費，讓你判斷值不值得安排查漏。',
+      },
+      {
+        title: '多台空壓機的分工',
+        desc: '找出空車運轉、幾台輪流加卸載這類白白耗電的情況，建議哪台主力、哪台待命。',
+      },
+      {
+        title: '該修、該改，還是該換',
+        desc: '在同樣的出氣量和壓力下比較耗電，確定效能真的變差了才建議汰換，避免不必要的設備投資。',
+      },
+    ],
+  },
+];
+---
+
+<section class="section section-alt" id="diagnostics">
+  <div class="container">
+    <div class="section-head">
+      <h2>電費最大的兩筆，通常是冰機和空壓機</h2>
+      <p>
+        系統用每天實際運轉的數據去算，告訴你錢浪費在哪、改了一年能省多少，不是一看機齡就叫你換新機。
+      </p>
+    </div>
+
+    <div class="diag-groups">
+      {
+        groups.map((g) => (
+          <div class="diag-group">
+            <h3 class={`diag-label diag-label-${g.key}`}>{g.label}</h3>
+            <figure class="diag-fig">
+              <img src={g.img.src} width={g.img.w} height={g.img.h} alt={g.img.alt} loading="lazy" decoding="async" />
+            </figure>
+            <dl class="diag-list">
+              {g.items.map((it) => (
+                <div class="diag-item">
+                  <dt>{it.title}</dt>
+                  <dd>{it.desc}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="inline-cta">
+      想知道你的冰機和空壓機一年多花多少電費？<a href="#contact">預約能效評估</a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .diag-groups {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 56px;
+  }
+
+  .diag-label {
+    font-size: 1.15rem;
+    margin: 0 0 20px;
+    padding-left: 12px;
+    border-left: 4px solid var(--c-blue);
+  }
+
+  .diag-label-compressor {
+    border-left-color: var(--c-teal);
+  }
+
+  .diag-fig {
+    margin: 0 0 28px;
+    padding: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  .diag-fig img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: calc(var(--radius) - 6px);
+  }
+
+  .diag-list {
+    margin: 0;
+  }
+
+  .diag-item {
+    padding: 18px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .diag-item:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .diag-item dt {
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .diag-item dd {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--ink-2);
+  }
+
+  @media (max-width: 860px) {
+    .diag-groups {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+</style>

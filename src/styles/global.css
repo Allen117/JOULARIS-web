@@ -305,7 +305,8 @@ html {
   display: block;
 }
 
-@media (max-width: 720px) {
+/* 導覽列有七個項目，880px 以下改用漢堡選單，避免擠成兩行 */
+@media (max-width: 880px) {
   .nav-toggle {
     display: block;
   }
