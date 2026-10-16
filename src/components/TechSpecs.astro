@@ -1,5 +1,5 @@
 ---
-// 技術架構：給系統整合商（SI）與資訊部門看的規格總覽
+// 技術架構：先用一句話向企業主交代資料安全與穩定性，完整規格收合供資訊部門評估
 // 內容整理自產品實際架構：後端 Engine 背景服務 + 前端 Web 儀表板
 // null 表示該側不適用，畫面上以「—」呈現
 const rows = [
@@ -64,17 +64,15 @@ const rows = [
 <section class="section section-alt" id="tech-specs">
   <div class="container">
     <div class="section-head">
-      <h2>給系統整合商與資訊部門</h2>
+      <h2>資料留在自己公司，系統長年穩定運轉</h2>
       <p>
-        後端 Engine 是 7×24 常駐服務，負責資料採集、警報比對與自動控制；前端 Web
-        儀表板用來監看即時狀態、設定規則與設計畫面。兩端透過 MQTT 即時串接，歷史資料統一寫入
-        SQL Server。
+        系統裝在貴公司自己的主機上，運轉數據不外流；全天候收資料、比對警報、自動控制，帳號依職務分級授權。
       </p>
     </div>
 
     <details class="card spec-card">
       <summary>
-        展開完整規格表（{rows.length} 項）
+        展開完整規格（供資訊部門評估）
         <svg
           class="spec-chevron"
           width="20"
