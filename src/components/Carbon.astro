@@ -1,0 +1,119 @@
+---
+// 碳盤查：ISO 14064-1 溫室氣體盤查工作台，從企業主面對客戶與法規要求的角度說明
+import ShotCrop from './ShotCrop.astro';
+import carbonWorkbench from '../assets/carbon-workbench.png';
+
+const items = [
+  {
+    title: '用電排放，系統直接算好',
+    desc: '電表數據本來就在系統裡，乘上排放係數就是逐月的類別 2 排放，不必再派人抄電費單、整理 Excel。',
+  },
+  {
+    title: '還缺什麼，一張清單看完',
+    desc: '盤查拆成七個步驟，每一步標出完成或待補：哪個月的油單沒交、哪個係數還是暫用值，點進去就能補。',
+  },
+  {
+    title: '買綠電的效果算得出來',
+    desc: '同時算出 location-based 與 market-based 兩種排放，綠電憑證抵掉多少一目了然，也能對照基準年看今年的減量有沒有落後。',
+  },
+  {
+    title: '送查證前凍結，數字不會再變',
+    desc: '確認無誤後凍結當年度，清冊、報告書都從同一份資料產出。送查證單位或回覆客戶問卷時，每次給出去的數字都一樣。',
+  },
+];
+---
+
+<section class="section" id="carbon">
+  <div class="container">
+    <div class="section-head">
+      <h2>客戶要你交碳排數據，不用再從頭整理</h2>
+      <p>
+        依 ISO 14064-1 的盤查流程設計。大部分排放來自用電，而用電數據系統每天都在收，盤查時要補的只剩少數人工單據。
+      </p>
+    </div>
+
+    <div class="carbon-body">
+      <figure class="carbon-shot">
+        <ShotCrop
+          src={carbonWorkbench}
+          base={[2000, 1524]}
+          box={[0, 62, 2000, 1414]}
+          alt="ISO 14064-1 溫室氣體盤查工作台：盤查進度 3/7 步驟完成，列出排放源鑑別、排放係數、活動數據、盤查基本資料、顯著性評估、不確定性與數據品質、凍結與匯出七個步驟的狀態與待補項目"
+        />
+        <figcaption>盤查工作台：七個步驟的進度與待補項目</figcaption>
+      </figure>
+
+      <dl class="carbon-list">
+        {
+          items.map((it) => (
+            <div class="carbon-item">
+              <dt>{it.title}</dt>
+              <dd>{it.desc}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <p class="inline-cta">
+      今年開始被要求交碳盤查了嗎？<a href="#contact">聊聊怎麼導入</a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .carbon-body {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  .carbon-shot {
+    margin: 0;
+  }
+
+  .carbon-shot :global(.shot-crop) {
+    box-shadow: 0 6px 16px rgb(16 46 40 / 0.1);
+  }
+
+  .carbon-shot figcaption {
+    margin-top: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink-3);
+  }
+
+  .carbon-list {
+    margin: 0;
+  }
+
+  .carbon-item {
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .carbon-item:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .carbon-item dt {
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .carbon-item dd {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--ink-2);
+  }
+
+  @media (max-width: 860px) {
+    .carbon-body {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+  }
+</style>
